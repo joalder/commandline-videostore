@@ -11,6 +11,19 @@ public class RentalFactory {
 		final String[] rentalData = input.split(" ");
 		int movieKey = Integer.parseInt(rentalData[0]);
 		final Movie movie = movieRepository.getByKey(movieKey);
-		return new Rental(movie, Integer.parseInt(rentalData[1]));
+		return createRental(movie, Integer.parseInt(rentalData[1]));
+	}
+
+	static Rental createRental(Movie movie, int daysRented) {
+		switch (movie.getCategory()) {
+			case "REGULAR":
+				return new RegularRental(movie, daysRented);
+			case "NEW_RELEASE":
+				return new NewReleaseRental(movie, daysRented);
+			case "CHILDRENS":
+				return new ChildrenRental(movie, daysRented);
+			default:
+				throw new IllegalArgumentException("Unknown Movie type given!");
+		}
 	}
 }

@@ -11,6 +11,10 @@ public class RentalRecord {
 		this.customerName = customerName;
 	}
 
+	public Collection<Rental> getRentals() {
+		return rentals;
+	}
+
 	public int getFrequentRenterPoints() {
 		return rentals.stream()
 				.map(Rental::getFrequentRenterPoints)

@@ -37,15 +37,13 @@ public class Main {
 
 		out.print("Choose movie by number followed by rental days, just ENTER for bill:\n");
 
-		double totalAmount = 0;
-		int frequentRenterPoints = 0;
 		String result = "cl_videostore.Rental Record for " + customerName + "\n";
 
 		Collection<Rental> rentals = inputRentals(inputStreamReader);
 
-		frequentRenterPoints = getFrequentRenterPoints(rentals);
+		int frequentRenterPoints = getFrequentRenterPoints(rentals);
 
-		totalAmount = getTotalAmount(rentals);
+		double totalAmount = getTotalAmount(rentals);
 
 		result += rentals.stream()
 				.map(rental -> "\t" + rental.getMovieName() + "\t" + rental.getAmount() + "\n")
@@ -70,6 +68,7 @@ public class Main {
 
 			rentals.add(rentalFactory.createFrom(input));
 		}
+
 		return rentals;
 	}
 
@@ -86,5 +85,4 @@ public class Main {
 				.mapToInt(Integer::intValue)
 				.sum();
 	}
-
 }

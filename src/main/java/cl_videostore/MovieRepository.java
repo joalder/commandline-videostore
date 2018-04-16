@@ -20,7 +20,8 @@ public class MovieRepository {
 		while (bufferedReader.ready()) {
 			final String line = bufferedReader.readLine();
 			final String[] movieData = line.split(";");
-			Movie movie = new Movie(Integer.parseInt(movieData[0]), movieData[1], movieData[2]);
+			MovieCategory category = MovieCategory.valueOf(movieData[2]);
+			Movie movie = new Movie(Integer.parseInt(movieData[0]), movieData[1], category);
 			movies.put(movie.getKey(), movie);
 		}
 	}

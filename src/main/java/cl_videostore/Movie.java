@@ -3,9 +3,9 @@ package cl_videostore;
 public class Movie {
 	private final int key;
 	private final String name;
-	private final String category;
+	private final MovieCategory category;
 
-	public Movie(int key, String name, String category) {
+	public Movie(int key, String name, MovieCategory category) {
 
 		this.key = key;
 		this.name = name;
@@ -20,7 +20,7 @@ public class Movie {
 		return name;
 	}
 
-	public String getCategory() {
+	public MovieCategory getCategory() {
 		return category;
 	}
 }

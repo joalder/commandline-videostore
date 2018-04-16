@@ -16,11 +16,11 @@ public class RentalFactory {
 
 	static Rental createRental(Movie movie, int daysRented) {
 		switch (movie.getCategory()) {
-			case "REGULAR":
+			case REGULAR:
 				return new RegularRental(movie, daysRented);
-			case "NEW_RELEASE":
+			case NEW_RELEASE:
 				return new NewReleaseRental(movie, daysRented);
-			case "CHILDRENS":
+			case CHILDRENS:
 				return new ChildrenRental(movie, daysRented);
 			default:
 				throw new IllegalArgumentException("Unknown Movie type given!");

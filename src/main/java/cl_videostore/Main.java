@@ -28,10 +28,8 @@ public class Main {
 	}
 
 	void run() throws IOException {
-
-		for (Movie movie : movieRepository.getAllMovies()) {
-			out.print(movie.getKey() + ": " + movie.getName() + "\n");
-		}
+		movieRepository.getAllMovies()
+				.forEach(movie -> out.print(movie.getKey() + ": " + movie.getName() + "\n"));
 
 		final BufferedReader inputStreamReader = new BufferedReader(new InputStreamReader(in));
 		out.print("Enter customer name: ");

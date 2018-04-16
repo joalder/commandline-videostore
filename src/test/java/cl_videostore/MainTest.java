@@ -29,7 +29,8 @@ public class MainTest {
 
         new Main(
                 new ByteArrayInputStream(consoleInput.getBytes(StandardCharsets.UTF_8)),
-                new PrintStream(consoleOutputStream)
+                new PrintStream(consoleOutputStream),
+                new MovieRepository()
         ).run();
 
         assertEquals("0: The Shawshank Redemption (1994)\n" +

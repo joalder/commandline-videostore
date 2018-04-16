@@ -5,7 +5,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.PrintStream;
-import java.util.Map;
 
 public class Main {
 
@@ -14,14 +13,13 @@ public class Main {
 	private MovieRepository movieRepository;
 
 	public static void main(String[] args) throws IOException {
-		new Main(System.in, System.out).run();
+		new Main(System.in, System.out, new MovieRepository()).run();
 	}
 
-	public Main(InputStream in, PrintStream out) throws IOException {
+	public Main(InputStream in, PrintStream out, MovieRepository movieRepository) {
 		this.in = in;
 		this.out = out;
-
-		this.movieRepository = new MovieRepository();
+		this.movieRepository = movieRepository;
 	}
 
 	void run() throws IOException {

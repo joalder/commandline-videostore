@@ -29,10 +29,10 @@ public class Main {
         final Map<Integer, Movie> movies = new HashMap<>();
         while (bufferedReader.ready()) {
             final String line = bufferedReader.readLine();
-            final String[] movie = line.split(";");
-            Movie newMovie = new Movie(Integer.parseInt(movie[0]), movie[1], movie[2]);
-            movies.put(Integer.parseInt(movie[0]), newMovie);
-            out.print(movie[0] + ": " + movie[1] + "\n");
+            final String[] movieParts = line.split(";");
+            Movie movie = new Movie(Integer.parseInt(movieParts[0]), movieParts[1], movieParts[2]);
+            movies.put(Integer.parseInt(movieParts[0]), movie);
+            out.print(movie.getKey() + ": " + movie.getName() + "\n");
         }
 
         final BufferedReader inputStreamReader = new BufferedReader(new InputStreamReader(in));

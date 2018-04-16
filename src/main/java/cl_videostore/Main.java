@@ -11,19 +11,20 @@ public class Main {
 
 	private final InputStream in;
 	private final PrintStream out;
+	private MovieRepository movieRepository;
 
 	public static void main(String[] args) throws IOException {
 		new Main(System.in, System.out).run();
 	}
 
-	public Main(InputStream in, PrintStream out) {
+	public Main(InputStream in, PrintStream out) throws IOException {
 		this.in = in;
 		this.out = out;
+
+		this.movieRepository = new MovieRepository();
 	}
 
 	void run() throws IOException {
-		MovieRepository movieRepository = new MovieRepository();
-
 		movieRepository.getAll()
 				.forEach(movie -> out.print(movie.getKey() + ": " + movie.getName() + "\n"));
 

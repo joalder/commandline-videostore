@@ -36,22 +36,17 @@ public class Main {
 		String customerName = inputStreamReader.readLine();
 
 		out.print("Choose movie by number followed by rental days, just ENTER for bill:\n");
-
-		String result = "cl_videostore.Rental Record for " + customerName + "\n";
-
 		Collection<Rental> rentals = inputRentals(inputStreamReader);
+		RentalRecord rentalRecord = new RentalRecord(rentals, customerName);
 
-		int frequentRenterPoints = getFrequentRenterPoints(rentals);
-
-		double totalAmount = getTotalAmount(rentals);
-
+		String result = "cl_videostore.Rental Record for " + rentalRecord.getCustomerName() + "\n";
 		result += rentals.stream()
 				.map(rental -> "\t" + rental.getMovieName() + "\t" + rental.getAmount() + "\n")
 				.collect(Collectors.joining(""));
 
 		// add footer lines
-		result += "You owed " + totalAmount + "\n";
-		result += "You earned " + frequentRenterPoints + " frequent renter points\n";
+		result += "You owed " + rentalRecord.getTotalAmount() + "\n";
+		result += "You earned " + rentalRecord.getFrequentRenterPoints() + " frequent renter points\n";
 
 		out.print(result);
 	}
@@ -70,19 +65,5 @@ public class Main {
 		}
 
 		return rentals;
-	}
-
-	private double getTotalAmount(Collection<Rental> rentals) {
-		return rentals.stream()
-				.map(Rental::getAmount)
-				.mapToDouble(Double::doubleValue)
-				.sum();
-	}
-
-	private int getFrequentRenterPoints(Collection<Rental> rentals) {
-		return rentals.stream()
-				.map(Rental::getFrequentRenterPoints)
-				.mapToInt(Integer::intValue)
-				.sum();
 	}
 }

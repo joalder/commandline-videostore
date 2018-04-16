@@ -43,6 +43,24 @@ public class Main {
 		int frequentRenterPoints = 0;
 		String result = "cl_videostore.Rental Record for " + customerName + "\n";
 
+		Collection<Rental> rentals = inputRentals(inputStreamReader);
+
+		frequentRenterPoints = getFrequentRenterPoints(rentals);
+
+		totalAmount = getTotalAmount(rentals);
+
+		result += rentals.stream()
+				.map(rental -> "\t" + rental.getMovieName() + "\t" + rental.getAmount() + "\n")
+				.collect(Collectors.joining(""));
+
+		// add footer lines
+		result += "You owed " + totalAmount + "\n";
+		result += "You earned " + frequentRenterPoints + " frequent renter points\n";
+
+		out.print(result);
+	}
+
+	private Collection<Rental> inputRentals(BufferedReader inputStreamReader) throws IOException {
 		Collection<Rental> rentals = new ArrayList<>();
 
 		while (true) {
@@ -54,26 +72,21 @@ public class Main {
 
 			rentals.add(rentalFactory.createFrom(input));
 		}
+		return rentals;
+	}
 
-		frequentRenterPoints = rentals.stream()
-				.map(Rental::getFrequentRenterPoints)
-				.mapToInt(Integer::intValue)
-				.sum();
-
-		totalAmount = rentals.stream()
+	private double getTotalAmount(Collection<Rental> rentals) {
+		return rentals.stream()
 				.map(Rental::getAmount)
 				.mapToDouble(Double::doubleValue)
 				.sum();
+	}
 
-		result += rentals.stream()
-				.map(rental -> "\t" + rental.getMovieName() + "\t" + rental.getAmount() + "\n")
-				.collect(Collectors.joining(""));
-
-		// add footer lines
-		result += "You owed " + totalAmount + "\n";
-		result += "You earned " + frequentRenterPoints + " frequent renter points\n";
-
-		out.print(result);
+	private int getFrequentRenterPoints(Collection<Rental> rentals) {
+		return rentals.stream()
+				.map(Rental::getFrequentRenterPoints)
+				.mapToInt(Integer::intValue)
+				.sum();
 	}
 
 }

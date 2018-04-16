@@ -11,8 +11,8 @@ import java.util.Collection;
 public class Console {
 	private final InputStream in;
 	private final PrintStream out;
-	private RentalFactory rentalFactory;
 	private final BufferedReader inputStreamReader;
+	private RentalFactory rentalFactory;
 
 	public Console(InputStream in, PrintStream out, RentalFactory rentalFactory) {
 		this.in = in;
@@ -21,7 +21,7 @@ public class Console {
 		this.inputStreamReader = new BufferedReader(new InputStreamReader(in));
 	}
 
-	String inputCustomerName() throws IOException {
+	public String inputCustomerName() throws IOException {
 		out.print("Enter customer name: ");
 		return inputStreamReader.readLine();
 	}

@@ -13,16 +13,16 @@ public class Main {
 	private final RentalFactory rentalFactory;
 	private final Console console;
 
-	public static void main(String[] args) throws IOException {
-		new Main(System.in, System.out).run();
-	}
-
 	public Main(InputStream in, PrintStream out) throws IOException {
 		this.in = in;
 		this.out = out;
 		movieRepository = new MovieRepository();
 		rentalFactory = new RentalFactory(movieRepository);
 		console = new Console(in, out, rentalFactory);
+	}
+
+	public static void main(String[] args) throws IOException {
+		new Main(System.in, System.out).run();
 	}
 
 	void run() throws IOException {

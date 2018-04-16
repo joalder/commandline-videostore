@@ -9,13 +9,11 @@ import java.util.ArrayList;
 import java.util.Collection;
 
 public class Console {
-	private final InputStream in;
 	private final PrintStream out;
 	private final BufferedReader inputStreamReader;
 	private RentalFactory rentalFactory;
 
 	public Console(InputStream in, PrintStream out, RentalFactory rentalFactory) {
-		this.in = in;
 		this.out = out;
 		this.rentalFactory = rentalFactory;
 		this.inputStreamReader = new BufferedReader(new InputStreamReader(in));
